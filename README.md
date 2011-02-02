@@ -19,13 +19,19 @@ camp2jabt is written by Brian Stolz and is also released under GPLv3 or later.
 Installation
 ------------
 
-gem install syslog_logger dm-core xmpp4r SyslogLogger dm-timestamps dm-sqlite-adapter dm-migrations tinder i18n json
+`gem install dm-core xmpp4r SyslogLogger dm-timestamps dm-sqlite-adapter dm-migrations tinder i18n json`
+
+Currently it is not a gem itself, but I will be changing that shortly.
+
+For now, simply change to the lib directory and run `sh ../bin/camp2jabt`.
+
+That will be changed once its a properly bundled gem.
 
 Configuring ejabberd
 --------------------
 
 Ejabberd needs to be configured for the new transport. Find the _Listened ports_
-section and add the following inside the <code>{listen, [</code> array:
+section and add the following inside the `{listen, [` array:
 
     % Campfire Transport
     {5348, ejabberd_service, [{host, "campfire.xmpp.example.com",
@@ -41,21 +47,29 @@ Configuration camp2jabt
 After installing the package, you'll need to configure it.
 
 Create a file called "/etc/camp2jabt.yml" with the following:
-<code>
----
-:data_dir:
-  "/var/lib/camp2jabt/"
-:server:
-  "xmpp.example.com"
-:port:
-  5348
-:jid:
-  "campfire.xmpp.example.com"
-:secret:
-  "letmein"
-</code>
+
+    ---
+    :data_dir:
+      "/var/lib/camp2jabt/"
+    :server:
+      "xmpp.example.com"
+    :port:
+      5348
+    :jid:
+      "campfire.xmpp.example.com"
+    :secret:
+      "letmein"
 
 Edit the server, secret, port and jid to match the settings you used in your ejabberd config.
+
+Todo
+----
+
+* EventMachine support instead of threads (ewww)
+* Proper tests
+* Channel history support
+* Code cleanup
+
 
 Usage
 -----
@@ -65,9 +79,8 @@ client's service discovery window and look for _Campfire Transport_. Select it a
 click _Register_. Then you need to enter your campfire information. You only need
 to register once.
 
-After you are registered, select your client's _Add Contact_ option. The dialog
-should have a new option to change the protocol to _campfire_. Select this and then
-enter the room name.
+After you are registered, relogin to your jabber server (unless you got the channel invite).
+The jabber server should automatically invite you to the campfire channel.
 
-Any messages sent to this contact will be sent to the campfire room.  Also any messages sent
-to the campfire room will be sent to you.
+Any messages sent to this channel will be sent to the campfire room.  Also any messages sent
+to the campfire room will be sent to the jabber channel.
