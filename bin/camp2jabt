@@ -1,0 +1,6 @@
+#!/usr/bin/ruby
+
+require 'camp2jabt'
+
+app = Camp2JabT.new
+app.start()

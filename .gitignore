@@ -1,0 +1,5 @@
+config.yml
+*~
+*.swp
+rmailt.db
+debian/

@@ -1,0 +1,11 @@
+---
+:data_dir:
+  "/var/lib/camp2jabt/"
+:server:
+  "xmpp.example.com"
+:port:
+  5348
+:jid:
+  "campfire.xmpp.example.com"
+:secret:
+  "letmein"
